@@ -1,9 +1,9 @@
 FROM alpine
 WORKDIR /app
-ADD . /app
 
 RUN apk update && apk upgrade && \
-    apk add --update nodejs
+    apk add --update nodejs && \
+    apk add --update npm
 
 EXPOSE 3000
 
