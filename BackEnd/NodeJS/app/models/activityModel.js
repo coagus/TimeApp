@@ -11,7 +11,8 @@ let activityModel = {};
 
 activityModel.getActivities = (callback) => {
   if (connection) {
-    connection.query('SELECT * FROM Activity ORDER BY Id',
+    connection.query(
+      'SELECT * FROM Activity ORDER BY Id',
       (err, rows) => {
         if (err) {
           throw err;
@@ -37,6 +38,26 @@ activityModel.addActivity = (activityData, callback) => {
         }
       }
     );
+  }
+};
+
+activityModel.updateActivity = (activityData, callback) => {
+  if (connection) {
+    const qry = `
+      UPDATE Activity SET
+      Name = ${connection.escape(activityData.Name)}
+      WHERE Id = ${connection.escape(activityData.Id)}
+    `;
+
+    connection.query(qry, (err, result) => {
+      if (err) {
+        throw err;
+      } else {
+        callback(null, {
+          "msg": "success"
+        });
+      }
+    });
   }
 };
 

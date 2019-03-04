@@ -28,4 +28,22 @@ module.exports = function (app) {
       }
     });
   });
+
+  app.put('/activity/:id', (req, res) => {
+    const activityData = {
+      Id: req.params.id,
+      Name: req.body.Name
+    };
+
+    Activity.updateActivity(activityData, (err, data) => {
+      if (data && data.msg) {
+        res.json(data);
+      } else {
+        res.json({
+          success: false,
+          msg: 'Error'
+        });
+      }
+    });
+  });
 };
