@@ -23,6 +23,4 @@ activityModel.getActivities = (callback) => {
   }
 };
 
-kagada
-
 module.exports = activityModel;
