@@ -23,4 +23,21 @@ activityModel.getActivities = (callback) => {
   }
 };
 
+activityModel.addActivity = (activityData, callback) => {
+  if (connection) {
+    connection.query(
+      'INSERT INTO Activity SET ?', activityData,
+      (err, result) => {
+        if (err) {
+          throw err;
+        } else {
+          callback(null, {
+            'insertId': result.insertId
+          });
+        }
+      }
+    );
+  }
+};
+
 module.exports = activityModel;
