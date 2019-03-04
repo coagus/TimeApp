@@ -46,4 +46,19 @@ module.exports = function (app) {
       }
     });
   });
+
+  app.delete('/activity/:id', (req, res) => {
+    Activity.deleteActivity(req.params.id, (err, data) => {
+      if (data && data.msg === 'deleted' || data.msg === 'not exists') {
+        res.json({
+          success: true,
+          data
+        });
+      } else {
+        res.status(500).json({
+          msg: "Error"
+        });
+      }
+    });
+  });
 };

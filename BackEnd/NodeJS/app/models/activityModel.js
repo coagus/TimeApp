@@ -61,4 +61,28 @@ activityModel.updateActivity = (activityData, callback) => {
   }
 };
 
+activityModel.deleteActivity = (id, callback) => {
+  let qry = `SELECT * FROM Activity WHERE Id = ${connection.escape(id)}`;
+
+  connection.query(qry, (err, row) => {
+    if (row) {
+      let qry = `DELETE FROM Activity WHERE Id = ${id}`;
+
+      connection.query(qry, (err, result) => {
+        if (err) {
+          throw err;
+        } else {
+          callback(null, {
+            msg: "deleted"
+          });
+        }
+      });
+    } else {
+      callback(null, {
+        "msg": "not exists"
+      });
+    }
+  });
+};
+
 module.exports = activityModel;
