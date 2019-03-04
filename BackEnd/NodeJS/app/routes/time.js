@@ -29,5 +29,3 @@ module.exports = function (app) {
     });
   });
 };
-
-HOLIS MUNDO
