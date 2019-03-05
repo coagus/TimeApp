@@ -1,8 +1,15 @@
 const Activity = require('../models/activityModel');
+const TimeResult = require('../models/timeResultModel');
 
 module.exports = function (app) {
   app.get('/activities', (req, res) => {
     Activity.getActivities((err, data) => {
+      res.json(data);
+    });
+  });
+
+  app.get('/timeresult', (req, res) => {
+    TimeResult.getTimeResult((err, data) => {
       res.json(data);
     });
   });

@@ -1,10 +1,11 @@
 const mysql = require('mysql');
+const cnn = require('./conf');
 
 connection = mysql.createConnection({
-  host: '192.168.13.59',
-  user: 'root',
-  password: 'timeapp',
-  database: 'TimeAppDB'
+  host: cnn.host,
+  user: cnn.user,
+  password: cnn.password,
+  database: cnn.database
 });
 
 let activityModel = {};
