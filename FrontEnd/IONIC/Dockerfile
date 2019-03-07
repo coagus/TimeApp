@@ -1,11 +1,9 @@
-FROM alpine
+FROM ubuntu:latest
 WORKDIR /app
 
-RUN apk update && apk upgrade && \
-    apk add --update nodejs && \
-    apk add --update npm && \
-    npm install cordova && \
-    npm install ionic && \
-    npm cache clear --force 
+RUN apt-get update && \
+    apt-get install nodejs -y && \
+    apt-get install npm -y && \
+    npm install -g ionic
 
 EXPOSE 8100
